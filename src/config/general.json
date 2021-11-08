@@ -1,0 +1,7 @@
+{
+   "key": "aPecettoSiRiceveInCasa",
+   "incomingDir": "C:/NodeJs/ingenico-receipt-listener/incoming",
+   "port": 3030,
+   "https": false,
+   "maxWorkers": 4
+}

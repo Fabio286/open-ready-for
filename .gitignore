@@ -1,0 +1,9 @@
+node_modules
+build
+dist
+logs
+scripts/.pkg-cache
+incoming/OK
+!incoming/OK/.gitkeep
+incoming/KO
+!incoming/KO/.gitkeep
