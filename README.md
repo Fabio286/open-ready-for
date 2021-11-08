@@ -1,15 +1,7 @@
-# 🚀 Welcome to your new awesome project!
+# 🖥️ Open Ready-for 📱
 
-This project has been created using **webpack-cli**, you can now run
+This is an open-source alternative to official Ready-for desktop application, available only for Windows.
 
-```
-npm run build
-```
+## Usage
 
-or
-
-```
-yarn build
-```
-
-to bundle your application
+## How it works

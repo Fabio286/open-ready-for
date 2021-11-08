@@ -1,7 +1,7 @@
 {
-  "name": "my-webpack-project",
-  "version": "1.0.0",
-  "description": "My webpack project",
+  "name": "open-ready-for",
+  "version": "0.0.1",
+  "description": "Open-source and cross-platform Motorola Ready-for remote connector.",
   "main": "main.ts",
   "scripts": {
     "start": "npm run build:client && npm run build:server && node ./build/main.js",
