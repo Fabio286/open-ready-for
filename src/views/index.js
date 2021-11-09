@@ -5,13 +5,18 @@ const qrPrefix = 'motorolardpconnection';
 const version = '1.6.60';
 const expire = 60;
 
-function renderQR () {
-   const user = 'user';
-   const pass = 'pass';
-   const ips = ['192.168.1.100'];
+async function getAddresses () {
+   const response = await fetch('/ipaddresses');
+   return response.json();
+}
+
+async function renderQR () {
+   const ips = await getAddresses();
+   const user = 'username';
+   const pass = 'password';
    const timestamp = Math.round(new Date().getTime() / 1000);
    const content = 'Moto@lenovo.com' + version + timestamp + user + pass + expire + JSON.stringify(ips);
-   const token = crypto.createHash('sha256').update(content).digest('hex');
+   const token = crypto.createHash('sha256').update(content).digest('hex').substring(0, 16);
 
    const hostInfo = {
       timestamp,
@@ -22,7 +27,7 @@ function renderQR () {
       user,
       pass,
       authLevel: 2,
-      fp: false,
+      fp: 'fingerprint',
       sn: 0
    };
    const qrContent = qrPrefix + JSON.stringify(hostInfo);
@@ -30,8 +35,6 @@ function renderQR () {
    QRCode.toCanvas(canvas, qrContent, (error) => {
       if (error)
          console.error(error);
-      else
-         console.log('render qr');
    });
 }
 renderQR();
