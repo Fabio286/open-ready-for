@@ -1,13 +1,15 @@
+import fs from 'fs';
 import path from 'path';
 import express from 'express';
 import compression from 'compression';
 import { writeError, writeTrace } from '@fabio286/simplogs';
 import routes from './routes';
 
-const server = require('http');
+const server = require('https');
 const port = 9833;
 
 const app = express();
+app.locals.baseDir = path.join(__dirname, '../');
 app.use(express.json());
 app.use(express.text());
 app.use(express.urlencoded({ extended: true }));
@@ -17,10 +19,15 @@ app.use(express.static(path.join(__dirname, '../public')));
 // Routes
 app.use(routes);
 
-const serverInstance = server.createServer(app);
+const serverInstance = server.createServer({
+   key: fs.readFileSync(`${app.locals.baseDir}/certs/selfsigned.key`),
+   cert: fs.readFileSync(`${app.locals.baseDir}/certs/selfsigned.crt`),
+   requestCert: false,
+   rejectUnauthorized: false
+}, app);
 
 serverInstance.listen(port, () => {
-   writeTrace(`HTTP server listening on ${port} port`);
+   writeTrace(`HTTPS server listening on ${port} port`);
 });
 
 // Logging errori non gestiti
