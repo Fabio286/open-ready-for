@@ -1,3 +1,4 @@
+import './main.scss';
 const crypto = require('crypto');
 const QRCode = require('qrcode');
 const canvas = document.getElementById('canvas');
