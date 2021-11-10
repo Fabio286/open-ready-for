@@ -1,12 +1,13 @@
-import fs from 'fs';
 import path from 'path';
+import net from 'net';
+import http from 'http';
 import express from 'express';
 import compression from 'compression';
 import { writeError, writeTrace } from '@fabio286/simplogs';
 import routes from './routes';
 
-const server = require('https');
-const port = 9833;
+const httpPort = 8080;
+const tcpPort = 9833;
 
 const app = express();
 app.locals.baseDir = path.join(__dirname, '../');
@@ -19,15 +20,18 @@ app.use(express.static(path.join(__dirname, '../public')));
 // Routes
 app.use(routes);
 
-const serverInstance = server.createServer({
-   key: fs.readFileSync(`${app.locals.baseDir}/certs/selfsigned.key`),
-   cert: fs.readFileSync(`${app.locals.baseDir}/certs/selfsigned.crt`),
-   requestCert: false,
-   rejectUnauthorized: false
-}, app);
+const httpServer = http.createServer(app);
+httpServer.listen(httpPort, () => {
+   writeTrace(`HTTP server listening on ${httpPort} port`);
+});
 
-serverInstance.listen(port, () => {
-   writeTrace(`HTTPS server listening on ${port} port`);
+const tcpSever = net.createServer();
+tcpSever.listen(tcpPort, () => {
+   writeTrace(`TCP server listening on ${tcpPort} port`);
+});
+
+tcpSever.on('connection', socket => {
+   app.locals.phoneAddress = socket.remoteAddress?.replace('::ffff:', '');
 });
 
 // Logging errori non gestiti
