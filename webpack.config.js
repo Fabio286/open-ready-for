@@ -21,6 +21,7 @@ const config = {
       }),
       new HtmlWebpackPlugin({
          template: path.resolve(__dirname, 'src/views/index.html'),
+         favicon: 'src/views/remote.png',
          inject: true
       })
    ],

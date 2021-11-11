@@ -1,16 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Open Ready-for</title>
+   <style>
+      #canvas {
+         box-sizing: content-box;
+      }
+
+      .qr-wrapper {
+         border-radius: 5px;
+      }
+   </style>
 </head>
+
 <body>
-   <div class="columns">
-      <div class="column">
-         <canvas id="canvas"></canvas>
+   <div class="container">
+      <h2 class="is-size-2 has-text-centered has-text-weight-bold is-uppercase pt-6">Open Ready-for</h2>
+      <div class="columns pt-6">
+         <div class="column box">
+            <div class="columns is-vcentered">
+               <div class="column">
+                  <figure class="image">
+                     <canvas id="canvas" class="has-background-primary has-text-centered p-3 qr-wrapper"></canvas>
+                  </figure>
+               </div>
+               <div class="column">
+                  <form autocomplete="off">
+                     <div class="field">
+                        <label class="label">Username</label>
+                        <div class="control">
+                           <input id="user" class="input" type="text" value="user">
+                        </div>
+                     </div>
+                     <div class="field">
+                        <label class="label">Password</label>
+                        <div class="control">
+                           <input id="pass" class="input" type="text" value="pass">
+                        </div>
+                     </div>
+                     <div class="field is-grouped">
+                        <div class="control">
+                           <button id="qrGen" class="button is-primary">Generate QR</button>
+                        </div>
+                     </div>
+                  </form>
+                  <div id="address" class="has-text-centered pt-2"></div>
+               </div>
+            </div>
+         </div>
+         <div class="column is-half">
+            <div class="content">
+               <h3 class="is-size-4">Instructions</h3>
+               <ol type="1">
+                  <li>Set an username and password (or leave default) and generate QR code.</li>
+                  <li>Detect your phone local IP address. <b>Phone and PC must be connected on the same network</b>.</li>
+                  <li>Open your RDP client (ex. Remmina on Linux or Windows Remote Desktop Client) and create a new connection using your phone address and username and password chosen. <b>It's important that credentials are set on client before connection.</b></li>
+                  <li>Scan the QR code with your phone and wait until a message saying Connecting to PC appears.</li>
+                  <li>From your RDP client start the connection to the phone.</li>
+               </ol>
+            </div>
+         </div>
       </div>
    </div>
 </body>
+
 </html>

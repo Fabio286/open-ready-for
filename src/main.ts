@@ -12,7 +12,6 @@ const tcpPort = 9833;
 const app = express();
 app.locals.baseDir = path.join(__dirname, '../');
 app.use(express.json());
-app.use(express.text());
 app.use(express.urlencoded({ extended: true }));
 app.use(compression());
 app.use(express.static(path.join(__dirname, '../public')));
