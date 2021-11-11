@@ -4,7 +4,8 @@
   "description": "Open-source and cross-platform Motorola Ready-for remote connector.",
   "main": "main.ts",
   "scripts": {
-    "start": "npm run build:client && npm run build:server && node ./build/main.js",
+    "start": "node ./build/main.js",
+    "build:all": "npm run build:client && npm run build:ugly",
     "build:dev:client": "webpack --mode=development",
     "build:client": "webpack --mode=production --node-env=production",
     "build:server": "rimraf ./build && tsc",
@@ -18,7 +19,6 @@
   "author": "Fabio Di Stasio",
   "license": "MIT",
   "dependencies": {
-    "@fabio286/simplogs": "0.0.7",
     "bulma": "^0.9.3",
     "compression": "^1.7.4",
     "express": "^4.17.1",

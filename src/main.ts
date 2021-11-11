@@ -3,7 +3,6 @@ import net from 'net';
 import http from 'http';
 import express from 'express';
 import compression from 'compression';
-import { writeError, writeTrace } from '@fabio286/simplogs';
 import routes from './routes';
 
 const httpPort = 8080;
@@ -21,12 +20,12 @@ app.use(routes);
 
 const httpServer = http.createServer(app);
 httpServer.listen(httpPort, () => {
-   writeTrace(`HTTP server listening on ${httpPort} port`);
+   console.log(`HTTP server listening on ${httpPort} port`);
 });
 
 const tcpSever = net.createServer();
 tcpSever.listen(tcpPort, () => {
-   writeTrace(`TCP server listening on ${tcpPort} port`);
+   console.log(`TCP server listening on ${tcpPort} port`);
 });
 
 tcpSever.on('connection', socket => {
@@ -35,10 +34,10 @@ tcpSever.on('connection', socket => {
 
 // Logging errori non gestiti
 process.on('uncaughtException', err => {
-   writeError(err.message);
+   console.error(err.message);
    process.exit();
 });
 process.on('unhandledRejection', (reason, promise) => {
-   writeError(`Unhandled Rejection at: ${promise} reason: ${reason}`);
+   console.error(`Unhandled Rejection at: ${promise} reason: ${reason}`);
    process.exit();
 });
