@@ -16,7 +16,7 @@ async function getAddresses () {
 
 async function getPhoneAddress () {
    const response = await fetch('/phoneaddress');
-   return response.json();
+   return response.text();
 }
 
 async function renderQR () {

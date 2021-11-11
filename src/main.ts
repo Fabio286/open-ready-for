@@ -30,7 +30,7 @@ tcpSever.listen(tcpPort, () => {
 });
 
 tcpSever.on('connection', socket => {
-   app.locals.phoneAddress = socket.remoteAddress?.replace('::ffff:', '');
+   process.env.PHONE_ADDRESS = socket.remoteAddress?.replace('::ffff:', '');
 });
 
 // Logging errori non gestiti

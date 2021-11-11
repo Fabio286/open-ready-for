@@ -1,6 +1,5 @@
 import express from 'express';
 const { networkInterfaces } = require('os');
-const app = express();
 const router = express.Router();
 
 // router.all('/rdp/connect/success', (req, res) => {
@@ -26,7 +25,8 @@ router.get('/ipaddresses', (req, res) => {
 });
 
 router.get('/phoneaddress', (req, res) => {
-   return res.status(200).send(app.locals.phoneAddress);
+   const address = process.env.PHONE_ADDRESS;
+   return res.status(200).send(address);
 });
 
 router.all('*', (req, res) => {
