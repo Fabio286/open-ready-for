@@ -43,4 +43,5 @@ During this time is possible to connect via RDP with the phone using a client di
 
 ## Tested with
 
-- Motorola Moto Edge 20 Lite
+- Motorola Edge 20 Lite
+- Motorola Edge 20 Pro
