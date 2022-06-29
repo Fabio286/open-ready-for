@@ -4,10 +4,11 @@
 </p>
 <!-- markdownlint-restore -->
 
-# Open Ready For 🖥️↔️📱
+# Open Ready For 🖥️↔️📱 (Android 11 and below)
 
 This is an open-source alternative to official Motorola Ready For Assistant desktop application, available only for Windows.  
-The goal of this project is to provide an RDP connection indipendent from Motorola client and bring this feature to operating systems differend than Windows.
+The goal of this project is to provide an RDP connection indipendent from Motorola client and bring this feature to operating systems differend than Windows.  
+Unfortunately due changes in new official Ready For application and the way how it connects with the phone **[I'm not able to provide support for Android 12](https://github.com/Fabio286/open-ready-for/issues/1#issuecomment-1170042373)**.
 
 ## Usage
 
